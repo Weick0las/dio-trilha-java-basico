@@ -13,7 +13,7 @@ public class Conta {
     private double getSaldo() {
         return saldo;
     }
-    public double getDoppelChequeEspecial() {
+    private double getDoppelChequeEspecial() {
         return doppelChequeEspecial;
     }
     private void setChequeEspecial(double chequeEspecial) {

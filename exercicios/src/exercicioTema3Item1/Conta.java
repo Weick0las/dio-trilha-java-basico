@@ -7,45 +7,58 @@ public class Conta {
     private double chequeEspecial;
     private double doppelChequeEspecial;
     
-    public void criarConta(){
+    private double getChequeEspecial() {
+        return chequeEspecial;
+    }
+    private double getSaldo() {
+        return saldo;
+    }
+    public double getDoppelChequeEspecial() {
+        return doppelChequeEspecial;
+    }
+    private void setChequeEspecial(double chequeEspecial) {
+        this.chequeEspecial = chequeEspecial;
+    }
+    private void setSaldo(double saldo) {
+        this.saldo = saldo;
+    }
+    
+    public void criarConta(Scanner scanner){
         System.out.println("Você está criando sua conta");
         System.out.println("===========================");
-        depositarDinheiro();
+        depositarDinheiro(scanner);
         if (saldo<=500){
-            chequeEspecial = 50;
+            setChequeEspecial(50);
             doppelChequeEspecial = 50;
         }
         else if (saldo>50){
-            chequeEspecial = saldo*(1/2);
+            setChequeEspecial(saldo*(1/2));
             doppelChequeEspecial = saldo*(1/2);
-        }
-        
+        }    
     }
 
     protected void consultar(String opcao){
         if (opcao.equals("saldo"))  {
-            System.out.println(saldo);
+            System.out.println(getSaldo());
         } 
         else if (opcao.equals("cheque especial")){
-            System.out.println(chequeEspecial);
+            System.out.println(getChequeEspecial());
         }
     }
 
-    public void depositarDinheiro(){
+    public void depositarDinheiro(Scanner scanner){
         System.out.println("Entre o valor que deseja depositar em sua conta: ");
-        Scanner scanner = new Scanner(System.in);
         double dinheiroDepositado = scanner.nextDouble();
-        saldo += dinheiroDepositado;
+        setSaldo(saldo + dinheiroDepositado);
         System.out.println("Valor depositado: " + dinheiroDepositado);
-        System.out.println("Saldo atual: " + saldo);
-        scanner.close();
+        System.out.println("Saldo atual: " + getSaldo());
     }
 
     public double sacarDinheiro(double valor){
         double dinheiroSacado = valor;
-        saldo -= dinheiroSacado;
-        System.out.println("Saldo atual: " + saldo);
-        return saldo;
+        setSaldo(saldo - dinheiroSacado);
+        System.out.println("Saldo atual: " + getSaldo());
+        return getSaldo();
     }
 
     public void pagarBoleto(){
@@ -61,21 +74,21 @@ public class Conta {
         if (totalSaldo<0){
             double valorUsadoCheque = Math.abs(totalSaldo);
             double taxa = valorUsadoCheque*(1/5);
-            chequeEspecial -= valorUsadoCheque;
+            setChequeEspecial(chequeEspecial - valorUsadoCheque);
             System.out.println("O cheque especial está sendo usado e sua taxa é " + taxa);
-            System.out.println("Ainda possui " + chequeEspecial + " para gastar");
-            System.out.println("Seu saldo com o valor descontado é " + (saldo-taxa));
+            System.out.println("Ainda possui " + getChequeEspecial() + " para gastar");
+            System.out.println("Seu saldo com o valor descontado é " + (getSaldo()-taxa));
         }
         else if (totalSaldo>0){
-            System.out.println("O cheque não precisou ser utilizado e o saldo atual é " + totalSaldo);
+            System.out.println("O cheque não precisou ser utilizado e o saldo atual é " + getSaldo());
         }
     }
 
     public void verificarCheque(){
-        if (chequeEspecial != doppelChequeEspecial){
+        if (getChequeEspecial() != getChequeEspecial()){
             System.out.println("O cheque especial está sendo usado");
         }
-        else if(chequeEspecial == doppelChequeEspecial){
+        else if(getChequeEspecial() == getDoppelChequeEspecial()){
             System.out.println("O cheque especial não está sendo usado");
         }
     }

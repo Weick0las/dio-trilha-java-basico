@@ -1,4 +1,4 @@
-package exercioOperacoesBasicasList;
+package List.OperacoesBasicasList;
 public class Tarefa {
     //atributo
     private String descricao;

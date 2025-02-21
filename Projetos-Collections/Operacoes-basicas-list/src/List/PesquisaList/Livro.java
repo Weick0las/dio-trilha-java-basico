@@ -1,4 +1,4 @@
-package exercicioPesquisaList;
+package List.PesquisaList;
 
 public class Livro {
     private String titulo;

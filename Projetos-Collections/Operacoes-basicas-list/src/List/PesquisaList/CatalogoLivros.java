@@ -1,4 +1,4 @@
-package exercicioPesquisaList;
+package List.PesquisaList;
 
 import java.util.List;
 import java.util.ArrayList;

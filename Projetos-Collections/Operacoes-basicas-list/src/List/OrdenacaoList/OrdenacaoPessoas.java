@@ -1,4 +1,4 @@
-package exercicioOrdenacaoList;
+package List.OrdenacaoList;
 
 import java.util.List;
 import java.util.ArrayList;
